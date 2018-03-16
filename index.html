@@ -48,7 +48,7 @@
 			<br><br>
 		<input id="username" type="text" name="username" placeholder="Enter Username">
 		<br><br>
-		<input id="button" type="button" name="button" value="Get Details">
+		<input id="button" type="button" name="button" value="Get Details"><br><br><br><br>
 
 	</div>
 
@@ -80,12 +80,12 @@
 				if(this.status == 200){
 
 					var user = JSON.parse(this.responseText);
-					var out='';
-					out+='USERNAME : '+user.login+'<br>';
-					out+='PUBLIC REPOSITORIES:'+ user.public_repos +'<br>';
-					out+='FOLLOWERS:'+user.followers+'<br>';
+					var out='<br><br><u><b>REQUESTED INFORMATION</b></u> : <br><br>';
+					out+='<b>USERNAME</b> : '+user.login+'<br>';
+					out+='<b>PUBLIC REPOSITORIES</b> :'+ user.public_repos +'<br>';
+					out+='<b>FOLLOWERS</b> : '+user.followers+'<br>';
 
-					out+='FOLLOWING:'+user.following+'<br>';
+					out+='<b>FOLLOWING</b> : '+user.following+'<br>';
 					document.getElementById('output').innerHTML=out;
 
 					//console.log(user.login);
