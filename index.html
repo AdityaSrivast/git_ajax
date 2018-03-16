@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Github Users</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<style type="text/css">
+
+	#form{
+		width: 50%;
+		margin: auto;
+		text-align: center;
+		margin-top: 10%;
+		background-color: rgb(20,200,120);
+	}
+
+
+	input[type="text"]
+	{
+		margin-top: 10%;
+		margin-right:  auto;
+		padding: 1.5%;
+		background-color: rgb(0,10,20);
+		color: rgb(20,200,120);
+	}
+
+	input[type="button"]
+	{
+		margin-top: 10%;
+		margin-right:auto;
+		padding: 1.5%;
+		background-color: rgb(0,10,20);
+		color: rgb(20,200,120);
+	}
+
+	#output,#image{
+		width: 50%;
+		margin: auto;
+	}
+	</style>
+
+</head >
+
+<body style="background-color: rgb(0,10,20);font-family: courier;">
+	<!--<h4 style="text-align: center; color: rgb(20,200,120)">Github User Details</h4><br><br>-->
+	<div id="form">
+		<h4 style="color: black;">GITHUB USER DETAILS</h4>
+			<br><br>
+		<input id="username" type="text" name="username" placeholder="Enter Username">
+		<br><br>
+		<input id="button" type="button" name="button" value="Get Details">
+
+	</div>
+
+	<div id="output" style="color:rgb(20,200,120) ">
+		
+	</div>
+	<div id="image">
+		<img id="i">
+	</div>
+
+	<script type="text/javascript">
+		document.getElementById('button').addEventListener('click',func);
+
+
+		function func()
+		{
+			var u = document.getElementById('username').value;
+			var xhr= new XMLHttpRequest();
+			var str ='https://api.github.com/users/'+u;
+			//var tmp1='https://api.github.com/users/adityasrivast';
+
+			xhr.open('GET',str,true);
+			//console.log(str);
+			//console.log(tmp1);
+
+
+			xhr.onload=function()
+			{
+				if(this.status == 200){
+
+					var user = JSON.parse(this.responseText);
+					var out='';
+					out+='USERNAME : '+user.login+'<br>';
+					out+='PUBLIC REPOSITORIES:'+ user.public_repos +'<br>';
+					out+='FOLLOWERS:'+user.followers+'<br>';
+
+					out+='FOLLOWING:'+user.following+'<br>';
+					document.getElementById('output').innerHTML=out;
+
+					//console.log(user.login);
+					console.log(user.id);
+					console.log(user.avatar_url);
+					img=document.createElement('img');
+					img.src=user.avatar_url;
+					//document.getElementById('username')='';
+					//document.body.appendChild(img);
+					//document.getElementById('image').innerHTML=img;
+
+					// var val = document.getElementById('imagename').value,
+     //            	src = 'http://webpage.com/images/' + val +'.png',
+     //            	img = document.createElement('img');
+
+     //        		img.src = src;
+     //     	   	document.body.appendChild(img);
+
+				}
+			}
+			//document.getElementById('username')='';
+
+			xhr.send();
+
+		}
+	
+	</script>
+
+</body>
+</html>
